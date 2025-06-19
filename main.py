@@ -1,6 +1,3 @@
-def main():
-    print("Hello from readapt!")
+import streamlit as st
 
-
-if __name__ == "__main__":
-    main()
+st.switch_page("home.py")
