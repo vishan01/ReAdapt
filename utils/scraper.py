@@ -1,20 +1,12 @@
-from pydantic import BaseModel
-from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.prompts import PromptTemplate
+import bs4
+from langchain_community.document_loaders import WebBaseLoader
 
+page_url = "https://python.langchain.com/docs/how_to/chatbots_memory/"
 
-class JobInfo(BaseModel):
-    job_title: str
-    job_skills: str
-    job_description: str
+loader = WebBaseLoader(web_paths=[page_url])
+docs = []
+async for doc in loader.alazy_load():
+    docs.append(doc)
 
-parser = JsonOutputParser(pydantic_object=JobInfo)
-
-prompt = PromptTemplate.from_template("""
-Extract the job information from the text below and respond in the specified JSON format.
-
-{format_instructions}
-
-Job Posting:
-{job_posting}
-""")
+assert len(docs) == 1
+doc = docs[0]
