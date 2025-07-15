@@ -1,20 +1,29 @@
 from pydantic import BaseModel
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
-
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
 
 class JobInfo(BaseModel):
     job_title: str
     job_skills: str
     job_description: str
 
-parser = JsonOutputParser(pydantic_object=JobInfo)
+def parse_job_posting(job_posting_text: str) -> JobInfo:
+    parser = JsonOutputParser(pydantic_schema=JobInfo)
+    format_instructions = parser.get_format_instructions()
+    prompt = PromptTemplate.from_template("""
+    Extract structured job information in JSON format using the following schema.
 
-prompt = PromptTemplate.from_template("""
-Extract the job information from the text below and respond in the specified JSON format.
+    {format_instructions}
 
-{format_instructions}
+    Job Posting:
+    {job_posting}
+    """)
+    llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0)
+    chain = prompt | llm | parser
+    return chain.invoke({
+        "job_posting": job_posting_text,
+        "format_instructions": format_instructions
+    })
 
-Job Posting:
-{job_posting}
-""")
