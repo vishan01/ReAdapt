@@ -10,6 +10,17 @@ class JobInfo(BaseModel):
     job_description: str
 
 def parse_job_posting(job_posting_text: str) -> JobInfo:
+    """
+    Parses the job posting and extracts the required informations such as:
+    skills, Title, Description
+
+    params:
+    job_posting_text: Extracted Job Role Description Text
+
+    return:
+    JobInfo: Json formated text regarding the job
+    
+    """
     parser = JsonOutputParser(pydantic_schema=JobInfo)
     format_instructions = parser.get_format_instructions()
     prompt = PromptTemplate.from_template("""
@@ -20,7 +31,7 @@ def parse_job_posting(job_posting_text: str) -> JobInfo:
     Job Posting:
     {job_posting}
     """)
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-001", temperature=0)
     chain = prompt | llm | parser
     return chain.invoke({
         "job_posting": job_posting_text,
