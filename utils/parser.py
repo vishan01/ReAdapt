@@ -9,7 +9,7 @@ class JobInfo(BaseModel):
     job_skills: str
     job_description: str
 
-def parse_job_posting(job_posting_text: str) -> JobInfo:
+def parse_job_posting(job_posting_text: str) -> JobInfo|tuple:
     """
     Parses the job posting and extracts the required informations such as:
     skills, Title, Description
@@ -21,7 +21,7 @@ def parse_job_posting(job_posting_text: str) -> JobInfo:
     JobInfo: Json formated text regarding the job
     
     """
-    parser = JsonOutputParser(pydantic_schema=JobInfo)
+    parser = JsonOutputParser(pydantic_object=JobInfo)
     format_instructions = parser.get_format_instructions()
     prompt = PromptTemplate.from_template("""
     Extract structured job information in JSON format using the following schema.
@@ -33,8 +33,12 @@ def parse_job_posting(job_posting_text: str) -> JobInfo:
     """)
     llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-001", temperature=0)
     chain = prompt | llm | parser
-    return chain.invoke({
-        "job_posting": job_posting_text,
-        "format_instructions": format_instructions
-    })
+    try:
+        parsed_text=chain.invoke({
+            "job_posting": job_posting_text,
+            "format_instructions": format_instructions
+        })
+        return parsed_text,None
+    except Exception as e:
+        return "LLM Generation Error: Please Update the API_KEY",e
 

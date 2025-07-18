@@ -19,4 +19,4 @@ def compile_latex_to_pdf(latex_code:str)->tuple:
             return pdf_bytes, None
 
         except subprocess.CalledProcessError as e:
-            return e, "LaTeX compilation failed. Please check your LaTeX code."
+            return "LaTeX compilation failed. Please check your LaTeX code.",e
