@@ -20,3 +20,7 @@ def compile_latex_to_pdf(latex_code:str)->tuple:
 
         except subprocess.CalledProcessError as e:
             return "LaTeX compilation failed. Please check your LaTeX code.",e
+
+# --> Todo: Use the langchain gemini for generating latex code of resume 
+def latex_code_generator(job_details:dict, template:str, )->tuple:
+    pass

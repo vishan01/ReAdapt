@@ -41,4 +41,6 @@ def parse_job_posting(job_posting_text: str) -> JobInfo|tuple:
         return parsed_text,None
     except Exception as e:
         return "LLM Generation Error: Please Update the API_KEY",e
-
+# --> Todo: Write the parser code using suitable framework
+def pdf_parser():
+    pass
