@@ -3,6 +3,8 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
+import pymupdf4llm
+import pymupdf
 
 class JobInfo(BaseModel):
     job_title: str
@@ -41,6 +43,7 @@ def parse_job_posting(job_posting_text: str) -> JobInfo|tuple:
         return parsed_text,None
     except Exception as e:
         return "LLM Generation Error: Please Update the API_KEY",e
-# --> Todo: Write the parser code using suitable framework
-def pdf_parser():
-    pass
+    
+def pdf_parser(file)->str:
+    md_text = pymupdf4llm.to_markdown(pymupdf.Document(file))
+    return md_text
