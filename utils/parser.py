@@ -11,7 +11,7 @@ class JobInfo(BaseModel):
     job_skills: str
     job_description: str
 
-def parse_job_posting(job_posting_text: str) -> JobInfo|tuple:
+def parse_job_posting(job_posting_text: list[str]) -> JobInfo|tuple:
     """
     Parses the job posting and extracts the required informations such as:
     skills, Title, Description
@@ -37,7 +37,7 @@ def parse_job_posting(job_posting_text: str) -> JobInfo|tuple:
     chain = prompt | llm | parser
     try:
         parsed_text=chain.invoke({
-            "job_posting": job_posting_text,
+            "job_posting": "\n".join(job_posting_text),
             "format_instructions": format_instructions
         })
         return parsed_text,None
