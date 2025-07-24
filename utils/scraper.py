@@ -1,8 +1,7 @@
 import bs4
 from langchain_community.document_loaders import WebBaseLoader
-import asyncio 
 
-def retrieve_data(page_url:str)->list[str]|tuple:
+def retrieve_data(page_url:str)->list[str]:
     """
     Retrieve the page data from the given url
 
@@ -10,16 +9,13 @@ def retrieve_data(page_url:str)->list[str]|tuple:
         page_url: URL of the job description
 
     return:
-        parsed data of the page
+        Parsed_data
+
     """
-    try:
-        loader = WebBaseLoader(web_paths=[page_url])
-        docs = []
-        for doc in loader.load():
-            docs.append(doc)
+    loader = WebBaseLoader(web_paths=[page_url])
+    docs = []
+    for doc in loader.load():
+        docs.append(doc)
 
-        doc = docs[0]
-        return docs,None
-    except Exception as e:
-        return "WebLoader Error: Try providing different or Valid URL",e
-
+    return docs
+    
