@@ -1,3 +1,3 @@
 # ReAdapt
 
-ReAdapt is a resume updating platform which modifies the current resume according to the given job description or url.
+A single paged single spot solution for the resume modification and job application tracking in the modern job market.
