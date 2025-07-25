@@ -31,4 +31,5 @@ if st.session_state['job_info'].get('type',None)=="URL":
                 st.error("There has been an error parsing Job Description")
 elif st.session_state['job_info'].get('type',None)=="TEXT":
     job_desc=st.text_area("Enter the Job Description")
-    st.session_state['job_info']['job_desc']=job_desc
+    with st.spinner("Parsing Job Description"):
+        st.session_state['job_info']['job_desc']=parse_job_posting([job_desc])
