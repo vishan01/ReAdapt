@@ -5,6 +5,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 import pymupdf4llm
 import pymupdf
+import tempfile
 
 class JobInfo(BaseModel):
     job_title: str
@@ -45,5 +46,11 @@ def parse_job_posting(job_posting_text: list[str]) -> JobInfo|tuple:
         return "LLM Generation Error: Please Update the API_KEY",e
     
 def pdf_parser(file)->str:
-    md_text = pymupdf4llm.to_markdown(pymupdf.Document(file))
+    pdf_path=""
+    md_text=""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        pdf_path = os.path.join(tmpdir, "resume.pdf")
+        with open(pdf_path,'wb') as res_writer:
+            res_writer.write(file.getvalue())
+        md_text = pymupdf4llm.to_markdown(pymupdf.Document(pdf_path))
     return md_text
