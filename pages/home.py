@@ -1,6 +1,6 @@
 import streamlit as st
-from ..utils.parser import pdf_parser,parse_job_posting
-from ..utils.scraper import retrieve_data
+from utils.parser import pdf_parser,parse_job_posting
+from utils.scraper import retrieve_data
 
 st.set_page_config("Home")
 st.title("_ReAdapt_: Adapt :blue[Resume] as per :orange[Job]")
@@ -8,8 +8,9 @@ uploaded_file=st.file_uploader("Upload Your Resume")
 if 'resume' not in st.session_state:
     st.session_state['resume']=None
 
-with st.spinner("Parsing Resume"):
-    st.session_state['resume']=pdf_parser(uploaded_file)
+if uploaded_file:
+    with st.spinner("Parsing Resume"):
+        st.session_state['resume']=pdf_parser(uploaded_file)
 
 if 'job_info' not in st.session_state:
     st.session_state['job_info']={}
