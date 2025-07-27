@@ -50,11 +50,8 @@ Original Resume Text:
 LaTeX Template:
 {template}
 
-Output only the final LaTeX code for the resume and a short reasoning on the formatting decisions taken.
+Output only the final LaTeX code for the resume and nothing else.
 
-Format your response as:
-<latex_code>
-<reasoning>
         """
     )
 
@@ -74,15 +71,8 @@ Format your response as:
     try:
         response = chain.invoke(input_data)
 
-        # Split the response into LaTeX code and reasoning
-        if "<latex_code>" in response and "<reasoning>" in response:
-            parts = response.split("<reasoning>")
-            latex_code = parts[0].replace("<latex_code>", "").strip()
-            reasoning = parts[1].strip()
-        else:
-            latex_code = response.strip()
-            reasoning = "No explicit reasoning provided."
+        latex_code=response.strip()
 
-        return latex_code, reasoning
+        return latex_code,""
     except Exception as e:
         return "Resume Generation Error",str(e)
