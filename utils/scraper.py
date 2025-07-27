@@ -15,7 +15,7 @@ def retrieve_data(page_url:str)->list[str]:
     loader = WebBaseLoader(web_paths=[page_url])
     docs = []
     for doc in loader.load():
-        docs.append(doc)
+        docs.append(doc.page_content)
 
     return docs
     
