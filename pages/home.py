@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.parser import pdf_parser,parse_job_posting
 from utils.scraper import retrieve_data
+from utils.generator import latex_code_generator,compile_latex_to_pdf
 
 st.set_page_config("Home")
 st.title("_ReAdapt_: Adapt :blue[Resume] as per :orange[Job]")
@@ -39,4 +40,9 @@ elif st.session_state['job_info'].get('type',None)=="TEXT":
         st.session_state['job_info']['job_desc']=parse_job_posting([job_desc])
 
 if st.session_state['job_info'].get('job_desc',None):
-    st.write(st.session_state['job_info']['job_desc'])
+    with open("template.tex","r") as file:
+        template=file.read()
+        latex_code,reason=latex_code_generator(st.session_state['job_info']['job_desc'],template,st.session_state['resume'])
+        pdf,err=compile_latex_to_pdf(latex_code)
+        if not err:
+            st.download_button("Download Resume",pdf,file_name="Resume.pdf",mime='application/octet-stream')
