@@ -32,7 +32,7 @@ def compile_latex_to_pdf(latex_code:str)->tuple:
 
 def latex_code_generator(job_details: dict, template: str, extracted_resume: str) -> Tuple[str, str]:
     # Initialize the Gemini model
-    model = ChatGoogleGenerativeAI(model="gemini-2.0-flash-001", temperature=0.5)
+    model = ChatGoogleGenerativeAI(model="gemini-2.5-flash-001", temperature=0.5)
 
     # Prompt
     prompt = ChatPromptTemplate.from_template(
