@@ -50,6 +50,11 @@ Original Resume Text:
 LaTeX Template:
 {template}
 
+Important things:
+    1) Bold few points in projects description as per job
+    2) Rewrite the hyperlinks in latex template as per given resume data
+    3) Leave hyperlinks in the template if its not available in given resume
+    
 Output only the final LaTeX code for the resume and nothing else.
 
         """
