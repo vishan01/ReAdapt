@@ -34,7 +34,7 @@ def parse_job_posting(job_posting_text: list[str]) -> JobInfo|tuple:
     Job Posting:
     {job_posting}
     """)
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-001", temperature=0)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-001", temperature=0)
     chain = prompt | llm | parser
     try:
         parsed_text=chain.invoke({
