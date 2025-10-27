@@ -1,0 +1,170 @@
+\documentclass[letterpaper,11pt]{article}
+
+%----------------------------------------------------------
+% Essential packages
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------------------------------------------------------
+% Page setup
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ⚙️ Margins — corrected for fullpage
+\setlength{\topmargin}{-0.6in}
+\setlength{\textheight}{10.5in}
+\setlength{\oddsidemargin}{-0.45in}
+\setlength{\textwidth}{7in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%----------------------------------------------------------
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%----------------------------------------------------------
+% PDF metadata
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%  RESUME STARTS HERE  %
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Vishnu Vardhan Gudipati} \\ \vspace{1pt}
+    \small Telangana, India $|$ \href{mailto:vishnurexample@gmail.com}{\underline{vishnuexample@gmail.com}} $|$ {+91-9876543211} \\
+    \href{https://linkedin.com/in/visexample}{\underline{linkedin.com/in/examplevis}} $|$
+    \href{https://github.com/vishexample}{\underline{github.com/example}} $|$
+    \href{https://portfolio}{\underline{portfolio.url}}
+\end{center}
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages:} Python, C++, Java, SQL, JavaScript \\
+     \textbf{Libraries:} Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, TensorFlow, PyTorch \\
+     \textbf{Frameworks:} FastAPI, Streamlit, Flask, Langchain, LlamaIndex, ChromaDB \\
+     \textbf{ML/AI Tools:} Vertex AI, Ollama, Hugging Face Transformers \\
+     \textbf{Other Tools:} Git, Docker, GCP, Jupyter Notebook
+    }}
+ \end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Egen (Formerly SpringML)}{Hyderabad, Telangana}
+      {Application Engineering Intern}{April 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Gained hands-on experience with Google Cloud Platform (GCP) services in developing scalable applications.}
+        \resumeItem{Built and enhanced user interfaces using Angular to improve internal tool usability.}
+        \resumeItem{Developed efficient backend APIs with FastAPI (Python) for optimized data serving and processing.}
+        \resumeItem{Explored and utilized Vertex AI to build, deploy, and manage machine learning models.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Personal Financial Manager (FinIntel)} $|$ \emph{Python, GenAI}}{Jan 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Designed system architecture and integrated Gemini 2 Flash model for personalized financial insights.}
+        \resumeItem{Visualized stock market data (200+ indices/companies) with real-time analytics.}
+        \resumeItem{Automated end-to-end CI/CD deployment pipeline.}
+      \resumeItemListEnd
+      
+    \resumeProjectHeading
+      {\textbf{Business Intelligence Product (Vishayamitra)} $|$ \emph{Python, GenAI}}{May 2024 -- Aug 2024}
+      \resumeItemListStart
+        \resumeItem{Built a multi-agent AI system for real-time market intelligence and pattern discovery.}
+        \resumeItem{Integrated ChromaDB for a 30\% improvement in data retrieval efficiency.}
+        \resumeItem{Enhanced analysis through dynamic data preprocessing and visualization modules.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Twitter Sentiment Analysis (SenTweet)} $|$ \emph{Python, ML, Streamlit}}{Mar 2024 -- May 2024}
+      \resumeItemListStart
+        \resumeItem{Developed a machine learning classifier achieving 85\% sentiment prediction accuracy.}
+        \resumeItem{Streamlined deployment using Streamlit for interactive user feedback analysis.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Sreenidhi Institute of Science and Technology}{Hyderabad, Telangana}
+      {B.Tech in Computer Science (AI \& ML), CGPA: 8.71}{Aug 2021 -- Present}
+  \resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeItem{Python For Data Science (NPTEL)}
+    \resumeItem{Machine Learning Specialization (Coursera)}
+    \resumeItem{AWS Academy Graduate - Cloud \& ML Foundations}
+    \resumeItem{Data Scientist Professional (Datacamp)}
+    \resumeItem{Generative AI Mastery (Udemy)}
+  \resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS-----------
+\section{Achievements}
+  \resumeSubHeadingListStart
+    \resumeItem{Winner of 5 major hackathons conducted by international tech organizations and Major League Hacking (MLH).}
+    \resumeItem{Completed 20+ AI/ML projects and contributed to open-source repositories on GitHub.}
+    \resumeItem{Solved over 600+ coding challenges on LeetCode, HackerRank, and HackerEarth.}
+    \resumeItem{Achieved Gold rank in multiple competitive coding competitions.}
+  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}

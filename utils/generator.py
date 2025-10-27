@@ -32,13 +32,14 @@ def compile_latex_to_pdf(latex_code:str)->tuple:
 
 def latex_code_generator(job_details: dict, template: str, extracted_resume: str) -> Tuple[str, str]:
     # Initialize the Gemini model
-    model = ChatGoogleGenerativeAI(model="gemini-2.5-flash-001", temperature=0.5)
+    model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.5)
 
     # Prompt
     prompt = ChatPromptTemplate.from_template(
         """
 You are a professional resume formatter using LaTeX. Your task is to take the provided resume text and job description,
 and rewrite the resume using the LaTeX template provided. Customize the content to best match the job description and skills.
+Make sure to create a high-quality ATS friendly LaTeX resume. Include relevant keywords and sentences from the job description to enhance ATS compatibility.
 
 Job Title: {job_title}
 Required Skills: {skills}
@@ -64,6 +65,7 @@ Output only the final LaTeX code for the resume and nothing else.
     chain = prompt | model | StrOutputParser()
 
     # Format prompt with variables
+    job_details = job_details[0]  # Assuming job_details is a list with one dict
     input_data = {
         "job_title": job_details.get("job_title", ""),
         "skills": ", ".join(job_details.get("job_skills", [])),
