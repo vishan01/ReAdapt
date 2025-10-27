@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_pdf_viewer import pdf_viewer
 from utils.parser import pdf_parser,parse_job_posting
 from utils.scraper import retrieve_data
 from utils.generator import latex_code_generator,compile_latex_to_pdf
@@ -33,6 +34,6 @@ if st.button("Generate Resume"):
                 with st.spinner("Compiling LaTeX to PDF"):
                     pdf,err=compile_latex_to_pdf(latex_code)
                 if not err:
-                    st.pdf(pdf)
+                    pdf_viewer(pdf, width=700, height=1000)
     else:
         st.warning("Please upload your resume and enter the job description.")
